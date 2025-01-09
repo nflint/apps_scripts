@@ -3,14 +3,14 @@
 ## Overview
 This Google Apps Script adds powerful Google Maps functionality directly to your Google Sheets through custom functions. It enables you to calculate distances, get directions, lookup addresses, and more without leaving your spreadsheet.
 
-## Features
-- Calculate travel time between locations
-- Measure distances between points
-- Get latitude and longitude coordinates
-- Look up full addresses from zip codes
-- Reverse geocode coordinates to addresses
-- Get country information for any address
-- Generate turn-by-turn directions
+## Key Benefits
+- **No API Key Required**: Uses Google Apps Script's built-in `Maps` service
+- **Automatic Authentication**: Leverages your Google Workspace credentials
+- **Zero Configuration**: No billing or API setup needed
+- **Seamless Integration**: Works directly within Google Sheets
+
+## How It Works
+This script uses the built-in `Maps` service in Google Apps Script, which is pre-authenticated and different from the public Google Maps API. It automatically uses your Google Workspace credentials, making it much simpler than traditional Google Maps integrations that require API keys and billing setup.
 
 ## Installation
 
@@ -19,6 +19,8 @@ This Google Apps Script adds powerful Google Maps functionality directly to your
 3. Copy and paste the entire script code into the Apps Script editor
 4. Save the project
 5. Return to your spreadsheet and refresh the page
+
+No additional setup or API configuration is required!
 
 ## Available Functions
 
@@ -105,6 +107,12 @@ Provides turn-by-turn directions between two locations.
 
 ## Technical Details
 
+### Authentication and API Access
+- Uses Google Apps Script's built-in `Maps` service
+- No API key or billing setup required
+- Automatically authenticates using your Google Workspace credentials
+- Subject to Google Workspace quotas (not Google Maps API quotas)
+
 ### Caching
 - The script implements caching to improve performance and reduce API calls
 - Cache duration: 6 hours
@@ -119,13 +127,20 @@ The script includes robust error handling for common scenarios:
 
 ## Requirements
 - Google Sheets
-- Google Maps API access (automatically available through Google Apps Script)
-- Active Google Workspace account
+- Google Workspace account
+- That's it! No additional API setup needed
+
+## Important Notes
+- This code only works within Google Apps Script
+- Cannot be used in regular JavaScript environments
+- Uses different syntax from the regular Google Maps JavaScript API
+- Instead of `google.maps.DirectionsService`, it uses Apps Script's `Maps` service
 
 ## Limitations
 - Cache entries expire after 6 hours
-- Subject to Google Maps API quotas and limits
+- Subject to Google Workspace quotas
 - Functions must be used within Google Sheets
+- Code is specific to Google Apps Script and cannot be used in other JavaScript environments
 
 ## Contributing
-This script was inspired by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). 
+This script is maintained by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). For updates and more information, visit the official website.
