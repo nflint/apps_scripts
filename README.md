@@ -128,4 +128,4 @@ The script includes robust error handling for common scenarios:
 - Functions must be used within Google Sheets
 
 ## Contributing
-This script is maintained by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). For updates and more information, visit the official website.
+This script was inspired by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). 
