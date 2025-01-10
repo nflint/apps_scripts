@@ -143,4 +143,4 @@ The script includes robust error handling for common scenarios:
 - Code is specific to Google Apps Script and cannot be used in other JavaScript environments
 
 ## Contributing
-This script is maintained by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). For updates and more information, visit the official website.
+This script was inspired by [labnol.org](https://labnol.org/google-maps-formulas-for-sheets-200817). I have made some modifications to meet my specific use cases. For updates and more information, visit the their website.
