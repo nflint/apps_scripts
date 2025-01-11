@@ -23,34 +23,46 @@ This script uses the built-in `Maps` service in Google Apps Script, which is pre
 No additional setup or API configuration is required!
 
 ## Available Functions
+### `GOOGLEMAPS_DURATION(origin, destination, [apiKey], [departureTime])`
+Returns the travel duration between two locations.
+- `origin`: Starting location (address or coordinates)
+- `destination`: Ending location (address or coordinates)
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- `departureTime`: (Optional) Desired departure time as Date object
+- Returns: String with formatted duration (e.g., "1 hour 23 mins")
 
-### GOOGLEMAPS_DURATION
-Calculates travel time between two locations.
+Example:
 ```
-=GOOGLEMAPS_DURATION("origin", "destination", "mode")
+=GOOGLEMAPS_DURATION("New York, NY", "Boston, MA")
 ```
-- **Parameters:**
-  - origin: Starting address
-  - destination: Ending address
-  - mode: "driving" (default), "walking", "bicycling", or "transit"
-- **Example:**
-  ```
-  =GOOGLEMAPS_DURATION("UT 84060", "Salt Lake City Utah", "walking")
-  ```
+Returns: `3 hours 57 mins`
 
-### GOOGLEMAPS_DISTANCE
-Calculates the distance between two locations.
+### `GOOGLEMAPS_DURATION_MINS(origin, destination, [apiKey], [departureTime])`
+Returns the travel duration between two locations in minutes.
+- `origin`: Starting location (address or coordinates)
+- `destination`: Ending location (address or coordinates)
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- `departureTime`: (Optional) Desired departure time as Date object
+- Returns: Number with total minutes (e.g., 83)
+
+Example:
 ```
-=GOOGLEMAPS_DISTANCE("origin", "destination", "mode")
+=GOOGLEMAPS_DURATION_MINS("New York, NY", "Boston, MA")
 ```
-- **Parameters:**
-  - origin: Starting address
-  - destination: Ending address
-  - mode: "driving" (default), "walking", "bicycling", or "transit"
-- **Example:**
-  ```
-  =GOOGLEMAPS_DISTANCE("Park City Utah 84060", "Salt Lake City Utah", "walking")
-  ```
+Returns: `237`
+
+### `GOOGLEMAPS_DISTANCE(origin, destination, [apiKey], [departureTime])`
+Returns the travel distance between two locations.
+- `origin`: Starting location (address or coordinates)
+- `destination`: Ending location (address or coordinates)
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- `departureTime`: (Optional) Desired departure time as Date object
+- Returns: String with formatted distance (e.g., "12.4 mi")
+
+Example:
+```
+=GOOGLEMAPS_DISTANCE("New York, NY", "Boston, MA")
+```
 
 ### GOOGLEMAPS_LATLONG
 Returns the latitude and longitude of an address.
@@ -62,24 +74,31 @@ Returns the latitude and longitude of an address.
   =GOOGLEMAPS_LATLONG("10 Hanover Square, NY")
   ```
 
-### GOOGLEMAPS_ADDRESS
-Returns the full address from a zip code or partial address.
-```
-=GOOGLEMAPS_ADDRESS("partial_address")
-```
-- **Example:**
-  ```
-  =GOOGLEMAPS_ADDRESS("10005")
-  ```
+### `GOOGLEMAPS_ADDRESS(latitude, longitude, [apiKey])`
+Returns the formatted address for given coordinates.
+- `latitude`: Latitude coordinate
+- `longitude`: Longitude coordinate
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- Returns: String with formatted address
 
-### GOOGLEMAPS_REVERSEGEOCODE
-Converts latitude and longitude coordinates to an address.
+Example:
 ```
-=GOOGLEMAPS_REVERSEGEOCODE(latitude, longitude)
+=GOOGLEMAPS_ADDRESS(40.7127753, -74.0059728)
 ```
-- **Parameters:**
-  - latitude: Decimal latitude coordinate
-  - longitude: Decimal longitude coordinate
+Returns: `10 Hanover Square, New York, NY 10005, USA`
+
+### `GOOGLEMAPS_REVERSEGEOCODE(latitude, longitude, [apiKey])`
+Returns the address components for given coordinates.
+- `latitude`: Latitude coordinate
+- `longitude`: Longitude coordinate
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- Returns: Array with address components [street number, route, city, state, country, postal code]
+
+Example:
+```
+=GOOGLEMAPS_REVERSEGEOCODE(40.7127753, -74.0059728)
+```
+Returns: `["10", "Hanover Square", "New York", "NY", "United States", "10005"]`
 
 ### GOOGLEMAPS_COUNTRY
 Returns the country name and code for an address.
@@ -91,33 +110,20 @@ Returns the country name and code for an address.
   =GOOGLEMAPS_COUNTRY("10 Hanover Square, NY")
   ```
 
-### GOOGLEMAPS_DIRECTIONS
-Provides turn-by-turn directions between two locations.
-```
-=GOOGLEMAPS_DIRECTIONS("origin", "destination", "mode")
-```
-- **Parameters:**
-  - origin: Starting address
-  - destination: Ending address
-  - mode: "driving" (default), "walking", "bicycling", or "transit"
-- **Example:**
-  ```
-  =GOOGLEMAPS_DIRECTIONS("NY 10005", "Hoboken NJ", "walking")
-  ```
-
-### `GOOGLEMAPS_DURATION_MINS(origin, destination, [apiKey], [departureTime])`
-Returns the travel duration in minutes between two locations.
+### `GOOGLEMAPS_DIRECTIONS(origin, destination, [apiKey])`
+Returns turn-by-turn directions between two locations.
 - `origin`: Starting location (address or coordinates)
 - `destination`: Ending location (address or coordinates)
 - `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
-- `departureTime`: (Optional) Desired departure time as Date object
-- Returns: Number representing duration in minutes
+- Returns: Array with step-by-step directions
 
 Example:
 ```
-=GOOGLEMAPS_DURATION_MINS("New York, NY", "Boston, MA")
+=GOOGLEMAPS_DIRECTIONS("New York, NY", "Boston, MA")
 ```
-Returns: `237`
+Returns: `["Head northeast on Broadway", "Turn right onto Park Row", ...]`
+
+
 
 ## Technical Details
 
