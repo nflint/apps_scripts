@@ -105,6 +105,20 @@ Provides turn-by-turn directions between two locations.
   =GOOGLEMAPS_DIRECTIONS("NY 10005", "Hoboken NJ", "walking")
   ```
 
+### `GOOGLEMAPS_DURATION_MINS(origin, destination, [apiKey], [departureTime])`
+Returns the travel duration in minutes between two locations.
+- `origin`: Starting location (address or coordinates)
+- `destination`: Ending location (address or coordinates)
+- `apiKey`: (Optional) Google Maps API key. If not provided, will use script property
+- `departureTime`: (Optional) Desired departure time as Date object
+- Returns: Number representing duration in minutes
+
+Example:
+```
+=GOOGLEMAPS_DURATION_MINS("New York, NY", "Boston, MA")
+```
+Returns: `237`
+
 ## Technical Details
 
 ### Authentication and API Access

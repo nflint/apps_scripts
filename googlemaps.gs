@@ -269,3 +269,34 @@ const GOOGLEMAPS_DIRECTIONS = (origin, destination, mode = "driving") => {
   setCache(key, directions);
   return directions;
 };
+
+/**
+ * Returns the travel duration in minutes between two locations using Google Maps API
+ *
+ * @param {string} origin - Starting location (address or coordinates)
+ * @param {string} destination - Ending location (address or coordinates)
+ * @param {string} [apiKey] - Optional Google Maps API key. If not provided, will use script property
+ * @param {Date} [departureTime] - Optional desired departure time
+ * @return {number} Duration in minutes
+ * @customfunction
+ */
+function GOOGLEMAPS_DURATION_MINS(origin, destination, apiKey, departureTime) {
+  const duration = GOOGLEMAPS_DURATION(origin, destination, apiKey, departureTime);
+  
+  // Convert duration string to minutes
+  const durationParts = duration.toLowerCase().replace('hours', 'hour').replace('mins', 'min').split(' ');
+  let totalMinutes = 0;
+  
+  for (let i = 0; i < durationParts.length; i += 2) {
+    const value = parseInt(durationParts[i]);
+    const unit = durationParts[i + 1];
+    
+    if (unit.includes('hour')) {
+      totalMinutes += value * 60;
+    } else if (unit.includes('min')) {
+      totalMinutes += value;
+    }
+  }
+  
+  return totalMinutes;
+}
